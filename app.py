@@ -17,12 +17,14 @@ def test():
     return render_template("index.html")
 
 @app.route("/ModularExponentiation")
-def Pepin():
+def exp():
     return render_template("modularexponentiation.html")
+    pass
 
 @app.route("/PrimalityTest")
-def DiffEq():
+def Pepin():
     return render_template("primalitytest.html")
+    pass
 
 #start the server
 if __name__ == "__main__":

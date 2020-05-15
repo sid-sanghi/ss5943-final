@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--specifies title of the page !-->
+        <title>Home</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content= "width=device-width, initial-scale=1">
+        <style>
+            * 
+            {
+                box-sizing: border-box;
+            }
+            body 
+            {
+                margin: 0;
+                text-align: center;
+                background-color: #cdeef9;
+                font-family: sans-serif;
+            }
+            .header 
+            {
+                text-align: center;
+                background: #63b1e5;
+                color: white;
+                padding: 150px
+            }
+            .header h1 
+            {
+                font-size: 60px;
+                font-family: sans-serif;
+            }
+            .header h2 
+            {
+                font-size: 25px;
+                font-family: sans-serif;
+            }
+            .navbar 
+            {
+                overflow: hidden;
+                background-color: #4c4c4c;
+            }
+            .navbar a
+            {
+                float: left;
+                display: block;
+                color: white;
+                padding: 14px 323px;
+                text-align: center;
+                text-decoration: none;
+            }
+            .navbar a:hover 
+            {
+                background-color: #666666;
+                color: white;
+            }
+            img 
+            {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 50%;
+                padding: 10px;
+            }
+            .contrast 
+            {
+                filter: contrast(150%);
+            }
+            .grid-container 
+            {
+                display: grid;
+                grid: 50px;
+                grid-gap: 10px;
+                background-color: #cdeef9;
+                padding: 10px;
+            }
+            .grid-container > div 
+            {
+                background-color: #63b1e5;
+                text-align: center;   
+                padding: 20px 0;
+            }
+        </style>
+    <head>
+    <body>
+        <div class= "header">
+            <h1>Sid's Website</h1>
+            <p>Created for ENGI E1006</p> 
+        </div>
+        <div class= "navbar">
+            <a href="/PrimalityTest">Primality Tests</a>
+            <a href="/">Home</a>
+        </div>
+        <div class="grid-container">
+            <div class="item1"><h1 style="color:white">My Modular Exponentiation Calculator</h1></div>
+        </div>
+        <div>
+            <img class="contrast" src="/static/images/modulo.png" alt="Modular Exponentiation">
+            <p style="font-size:30px">Here, <b>a</b> is the <b>base</b>, <b>k</b> is the <b>exponent</b>, <b>m</b> is the <b>modulus</b></p>
+        </div>
+        <div>
+            <p id="demo"></p>
+            <label for="base"><b>Enter a base:</b></label>
+            <input type="number" id="base">
+            <label for="exponenet"><b>Enter an exponent:</b></label>
+            <input type="number" id="exponent">
+            <label for="modulus"><b>Enter a modulus:</b></label>
+            <input type="number" id="modulus">
+            <script>
+            function modExp() 
+            {
+                base = document.getElementById("base").value;
+                exp = document.getElementById("exponent").value;
+                mod = document.getElementById("modulus").value;
+                
+                if (mod === 1) //every leaves remainder 0 with 1
+                    return 0;
+                var ans = 1;
+                base %= mod; //reducing the base modulo the modulus to make 
+                                   //the base a smaller number, if possible, and then
+                                   //carrying out modular exponentiaion on this new base
+                while (exp > 0) //while loop for successive squaring by using the binary
+                                //expansion of the exponent
+                {
+                    if (exp % 2 === 1) //the 1s in the exponent's binary expansion
+                        ans = (ans * base) % mod;
+                    exp = exp >> 1; //dividing by 2
+                    base = (base * base) % mod; //squaring
+                }
+                return ans;
+            }
+            function main()
+            {
+                var x = modExp();
+                document.getElementById("demo").innerHTML = x;
+            }
+            </script>
+            <button onclick="main()">Try Modular Exponentiation!</button>
+        </div>
+        <div class="grid-container">
+            <div class="item1"><h1 style="color:white">The Successive Squaring Method</h1></div>
+        </div>
+        <div>
+            <img class="contrast" src="/static/images/ss.png" alt="Successive Squares">
+        </div>
+        
+    </body>
+</html>

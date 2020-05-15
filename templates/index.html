@@ -65,7 +65,20 @@
             {
                 filter: contrast(150%);
             }
-            
+            .grid-container 
+            {
+                display: grid;
+                grid: 50px;
+                grid-gap: 10px;
+                background-color: #cdeef9;
+                padding: 10px;
+            }
+            .grid-container > div 
+            {
+                background-color: #63b1e5;
+                text-align: center;   
+                padding: 20px 0;
+            }
 
         </style>
     <head>
@@ -78,12 +91,50 @@
             <a href="/ModularExponentiation">Modular Exponentiation</a>
             <a href="/PrimalityTest">Primality Tests</a>
         </div>
-        
+        <div class="grid-container">
+            <div class="item1"><h1 style="color:white">Welcome to my Website!</h1></div>
+        </div>
         <div>
-            <h1>2003</h1>
+            <p>My name is <b>Siddhant Sanghi</b><p>
+            <p>I'm a <b>Freshman</b> in the Class of <b>2023</b><p>
+            <img class="contrast" src="/static/images/columbiaeng.png" alt="SEAS Logo">
+        </div>
+        <div class="grid-container">
+            <div class="item1"><h1 style="color:white">Pictures of Me</h1></div>
+        </div>
+        <div>
+            <p>These are <b>pictures</b> of me with the same smile :)</p>
+            <h2>From 2003</h2>
             <img class="contrast" src="/static/images/me2.jpeg" alt="Young Me">
-            <h1>2019</h1>
+            <h2>To 2019</h2>
             <img class="contrast" src="/static/images/me.jpeg" alt="Me">
+        </div>
+        <div class="grid-container">
+            <div class="item1"><h1 style="color:white">My Intended Areas of Study</h1></div>
+        </div>
+         <div>
+            <p>I plan to major in <b>Applied Mathematics</b><p>
+            <p>I hope to double minor in <b>Computer Science</b> and <b>Biomedical Engineering</b><p>
+            <img class="contrast" src="/static/images/engineering.png" alt="SEAS Bulletin">
+            <a href="https://bulletin.engineering.columbia.edu">Check out the Engineering Bulletin for more information!</a>
+        </div>
+        <div class="grid-container">
+            <div class="item1"><h1 style="color:white">My Favorite Website</h1></div>
+        </div>
+        <div>
+            <p>My <b>favorite website</b> is the <b>Daily Cartoons page</b> of The New Yorker Magazine</p>
+            <img class="contrast" src="/static/images/newyorker.gif" alt="The New Yorker Logo">
+            <a href="https://www.newyorker.com/cartoons/daily-cartoon">Check it out!</a>
+        </div>
+        <div class="grid-container">
+            <div class="item1"><h1 style="color:white">My Website's Pages</h1></div>
+        </div>
+        <div>
+            <p>Check out the <b>Navigation bar</b> at the top of the page!<p>
+            <p>My aim was to use what I learnt in the course <b>Number Theory and Cryptography (MATH UN3020)</b> this semester<p>
+            <p>My <b>first page</b> uses JavaScript to create a <b>Modular Exponentiation Calculator</b> using the <i>Successive Squaring Algorithm</i><p>
+            <p>My <b>second page</b> uses JavaScript to create a <b>Fermat Primality Tester</b> using <i>Fermat's Little Theorem</i><p> 
+            <img class="contrast" src="/static/images/pseudocode.png" alt="Modular Exponentiation Pseudocode">
         </div>
     </body>
 </html>
