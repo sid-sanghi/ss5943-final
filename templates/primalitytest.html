@@ -2,11 +2,11 @@
 <html>
     <head>
         <!--specifies title of the page !-->
-        <title>My Calculator</title>
+        <title>Primality Testing</title>
         <meta charset="UTF-8">
         <meta name="viewport" content= "width=device-width, initial-scale=1">
         <style>
-            * 
+* 
             {
                 box-sizing: border-box;
             }
@@ -44,7 +44,7 @@
                 float: left;
                 display: block;
                 color: white;
-                padding: 14px 323px;
+                padding: 14px 307px;
                 text-align: center;
                 text-decoration: none;
             }
@@ -58,7 +58,7 @@
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
-                width: 50%;
+                width: 70%;
                 padding: 10px;
             }
             .contrast 
@@ -87,25 +87,18 @@
             <h2>Created for ENGI E1006</h2> 
         </div>
         <div class= "navbar">
-            <a href="/PrimalityTest">Primality Tests</a>
+            <a href="/ModularExponentiation">Modular Exponentiation</a>
             <a href="/">Home</a>
         </div>
         <div class="grid-container">
-            <div class="item1"><h1 style="color:white">My Modular Exponentiation Calculator</h1></div>
-        </div>
-        <div>
-            <img class="contrast" src="/static/images/modulo.png" alt="Modular Exponentiation">
-            <p><i>Taken from https://www.math.lsu.edu/~adkins/m4023/SuccessivePowers.pdf</i></p>
-            <p style="font-size:30px">Here, <b>a</b> is the <b>base</b>, <b>k</b> is the <b>exponent</b>, <b>m</b> is the <b>modulus</b></p>
+            <div class="item1"><h1 style="color:white">My Fermat Primality Checker</h1></div>
         </div>
         <div>
             <p id="demo"></p>
-            <label for="base"><b>Enter a base:</b></label>
-            <input type="number" id="base">
-            <label for="exponenet"><b>Enter an exponent:</b></label>
-            <input type="number" id="exponent">
-            <label for="modulus"><b>Enter a modulus:</b></label>
-            <input type="number" id="modulus">
+            <label for="base"><b>Enter a number to check primality:</b></label>
+            <input type="number" id="prim">
+            <label for="modulus"><b>Enter a number of times to test:</b></label>
+            <input type="number" id="times">
             <p><b>Note:</b> For the above values, please enter positive numbers, with no greater than 8 digits</p>
             <script>
             function modExp(base, exp, mod) 
@@ -113,38 +106,54 @@
                 
                 if (mod === 1) //every leaves remainder 0 with 1
                     return 0;
-                var ans = 1;
-                base %= mod; //reducing the base modulo the modulus to make 
+                var result = 1;
+                base = base % mod; //reducing the base modulo the modulus to make 
                                    //the base a smaller number, if possible, and then
                                    //carrying out modular exponentiaion on this new base
                 while (exp > 0) //while loop for successive squaring by using the binary
                                 //expansion of the exponent
                 {
                     if (exp % 2 === 1) //the 1s in the exponent's binary expansion
-                        ans = (ans * base) % mod;
+                        result = (result * base) % mod;
                     exp = exp >> 1; //dividing by 2
                     base = (base * base) % mod; //squaring
                 }
-                return ans;
+                return result;
             }
-            function main()
+            function fermatTest(n, k)
             {
-                base = document.getElementById("base").value;
-                exp = document.getElementById("exponent").value;
-                mod = document.getElementById("modulus").value;
-                var x = modExp(base, exp, mod);
+                if (n <= 1 || n ===4) 
+                    return "composite"; 
+                if (n <=3)
+                    return "probably prime";
+                while (k > 0) 
+                { 
+                    // Pick a random number in [2...n-2], above 4      
+                    var a = 2 + Math.floor((Math.random() % (n - 4)));  
+         
+                    if (modExp(a, n - 1, n) != 1) // Fermat's little theorem 
+                        return "composite"; 
+                    k--;
+                } 
+                return "probably prime";  
+            } 
+            function main()
+            {   
+                n = document.getElementById("prim").value;
+                k = document.getElementById("times").value;
+                var x = fermatTest(n, k);
                 document.getElementById("demo").innerHTML = x;
             }
             </script>
-            <button onclick="main()">Try Modular Exponentiation!</button>
+            <button onclick="main()">Try the Fermat Primality Test!</button>
         </div>
         <div class="grid-container">
-            <div class="item1"><h1 style="color:white">The Successive Squaring Method</h1></div>
+            <div class="item1"><h1 style="color:white">The Fermat Primality Test and its Flaws</h1></div>
         </div>
         <div>
-            <img class="contrast" src="/static/images/ss.png" alt="Successive Squares">
-            <p><i>Taken from https://www.math.lsu.edu/~adkins/m4023/SuccessivePowers.pdf</i></p>
+            <img class="contrast" src="/static/images/ft1.png" alt="Fermat Primality Test Concept">
+            <img class="contrast" src="/static/images/ft2.png" alt="Fermat Primality Test Flaws">
+            <p><i>Both images taken from https://en.wikipedia.org/wiki/Fermat_primality_test</i></p>
         </div>
-        
     </body>
 </html>

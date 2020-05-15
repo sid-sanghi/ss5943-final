@@ -24,7 +24,6 @@ def exp():
 @app.route("/PrimalityTest")
 def Pepin():
     return render_template("primalitytest.html")
-    pass
 
 #start the server
 if __name__ == "__main__":
